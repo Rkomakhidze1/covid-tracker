@@ -26,8 +26,8 @@ export class AuthService {
     const user = this.userRepo.create({ username, password: hashedPassword });
 
     try {
-      const r = await this.userRepo.save(user);
-      return r;
+      const createdUser = await this.userRepo.save(user);
+      return createdUser;
     } catch (error) {
       if (error.errno === 19) {
         // duplicate username
