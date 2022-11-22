@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { StatisticsService } from './statistics.service';
 import { CreateStatisticDto } from './dto/create-statistic.dto';
@@ -29,8 +30,12 @@ export class StatisticsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.statisticsService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const statistic = await this.statisticsService.findOne(parseInt(id));
+    if (!statistic) {
+      throw new NotFoundException('statistic not found');
+    }
+    return statistic;
   }
 
   @Patch(':id')

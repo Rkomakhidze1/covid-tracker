@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CountriesService } from './countries.service';
@@ -29,8 +30,12 @@ export class CountriesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.countriesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const country = await this.countriesService.findOne(parseInt(id));
+    if (!country) {
+      throw new NotFoundException('country not found');
+    }
+    return country;
   }
 
   @Patch(':id')
