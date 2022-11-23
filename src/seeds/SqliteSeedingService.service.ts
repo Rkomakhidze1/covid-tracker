@@ -1,13 +1,15 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap, Logger } from '@nestjs/common';
 import axios from 'axios';
 import { CountriesService } from '../countries/countries.service';
 
 @Injectable()
 export class SqliteSeedingService implements OnApplicationBootstrap {
+  private readonly logger = new Logger(SqliteSeedingService.name);
+
   constructor(private countriesService: CountriesService) {}
   async onApplicationBootstrap() {
     if ((await this.countriesService.findAll()).length > 0) {
-      console.log('seeding skipped');
+      this.logger.log('seeding skipped');
       return;
     }
 
@@ -20,6 +22,6 @@ export class SqliteSeedingService implements OnApplicationBootstrap {
       console.error('something went wrong during seeding', e);
       process.exit();
     }
-    console.log('seeding done');
+    this.logger.log('seeding done');
   }
 }

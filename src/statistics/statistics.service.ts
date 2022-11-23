@@ -14,7 +14,6 @@ export class StatisticsService {
 
   create(createStatisticDto: CreateStatisticDto) {
     const statistic = this.statisticRepo.create(createStatisticDto);
-    console.log(statistic);
     return this.statisticRepo.save(statistic);
   }
 
