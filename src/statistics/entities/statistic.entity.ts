@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Country } from '../../countries/entities/country.entity';
 
 @Entity()
 export class Statistic {
@@ -13,4 +20,8 @@ export class Statistic {
 
   @Column()
   recovered: number;
+
+  @OneToOne(() => Country)
+  @JoinColumn({ name: 'country_id' })
+  country: Country;
 }

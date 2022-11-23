@@ -1,4 +1,5 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsOptional } from 'class-validator';
+import { Country } from '../../countries/entities/country.entity';
 
 export class CreateStatisticDto {
   @IsNumber()
@@ -9,4 +10,7 @@ export class CreateStatisticDto {
 
   @IsNumber()
   recovered: number;
+
+  @IsOptional()
+  country?: Country;
 }

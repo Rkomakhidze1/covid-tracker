@@ -1,6 +1,6 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import axios from 'axios';
-import { CountriesService } from 'src/countries/countries.service';
+import { CountriesService } from '../countries/countries.service';
 
 @Injectable()
 export class SqliteSeedingService implements OnApplicationBootstrap {

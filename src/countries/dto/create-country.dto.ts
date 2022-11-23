@@ -1,9 +1,9 @@
-import { IsString } from 'class-validator';
+import { IsString, IsObject } from 'class-validator';
 
 export class CreateCountryDto {
   @IsString()
   code: string;
 
-  @IsString()
+  @IsObject()
   name: { en: string; ka: string };
 }
