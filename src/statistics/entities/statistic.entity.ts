@@ -21,10 +21,10 @@ export class Statistic {
   @Column()
   recovered: number;
 
-  @JoinColumn()
+  @JoinColumn({ name: 'country_id' })
   @OneToOne(() => Country)
   country: Country;
 
-  @Column()
+  @Column({ name: 'country_id' })
   countryId?: number;
 }
