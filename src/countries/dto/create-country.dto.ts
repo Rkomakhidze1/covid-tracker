@@ -5,5 +5,5 @@ export class CreateCountryDto {
   code: string;
 
   @IsString()
-  name: string;
+  name: { en: string; ka: string };
 }

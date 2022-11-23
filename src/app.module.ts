@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { User } from './auth/entities/user.entity';
 import { Statistic } from './statistics/entities/statistic.entity';
 import { Country } from './countries/entities/country.entity';
+import { SqliteSeedingService } from './seeds/SqliteSeedingService.service';
 
 @Module({
   imports: [
@@ -22,6 +23,6 @@ import { Country } from './countries/entities/country.entity';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SqliteSeedingService],
 })
 export class AppModule {}

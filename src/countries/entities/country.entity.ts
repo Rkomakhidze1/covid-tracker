@@ -9,5 +9,5 @@ export class Country {
   code: string;
 
   @Column({ type: 'simple-json' })
-  name: string;
+  name: { en: string; ka: string };
 }
