@@ -7,6 +7,7 @@ import { StatisticsService } from '../statistics/statistics.service';
 @Injectable()
 export class TasksService {
   private readonly logger = new Logger(TasksService.name);
+
   constructor(
     private readonly statisticsService: StatisticsService,
     private readonly countriesService: CountriesService,
@@ -27,13 +28,19 @@ export class TasksService {
           code: country.code,
         })
       ).data;
+
+      const existingStatistic = await this.statisticsService.findByCountryId(
+        country.id,
+      );
       await this.statisticsService.create({
+        id: existingStatistic ? existingStatistic.id : undefined,
         confirmed,
         recovered,
         death,
-        country,
+        country: country,
       });
     }
+
     this.logger.log('updated statistics table');
   }
 }

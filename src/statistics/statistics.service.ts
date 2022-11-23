@@ -20,13 +20,19 @@ export class StatisticsService {
   findAll() {
     // statistic
     // can be paginated
-    return this.statisticRepo.find();
+    return this.statisticRepo.find({ relations: { country: true } });
   }
 
   findOne(id: number) {
     if (!id) return null;
 
     return this.statisticRepo.findOneBy({ id });
+  }
+
+  findByCountryId(countryId: number): Promise<Statistic | null> {
+    if (!countryId) return null;
+
+    return this.statisticRepo.findOne({ where: { countryId } });
   }
 
   async update(id: number, updateStatisticDto: UpdateStatisticDto) {
