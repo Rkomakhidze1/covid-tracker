@@ -19,7 +19,7 @@ export class SqliteSeedingService implements OnApplicationBootstrap {
         await this.countriesService.create(country);
       }
     } catch (e) {
-      console.error('something went wrong during seeding', e);
+      this.logger.error('something went wrong during seeding');
       process.exit();
     }
     this.logger.log('seeding done');
