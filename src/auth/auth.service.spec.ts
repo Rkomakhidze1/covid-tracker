@@ -18,9 +18,9 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     const fakeUsersRepo = {
-      create: jest.fn((arg) => arg),
-      save: jest.fn((arg) => arg),
-      findOne: jest.fn(),
+      create: jest.fn((arg) => Promise.resolve(arg)),
+      save: jest.fn((arg) => Promise.resolve(arg)),
+      findOne: jest.fn((arg) => Promise.resolve(arg)),
     };
     const fakeJwtService = {
       sign: jest.fn(),

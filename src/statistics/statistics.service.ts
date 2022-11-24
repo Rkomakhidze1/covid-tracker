@@ -29,7 +29,7 @@ export class StatisticsService {
     return this.statisticRepo.findOneBy({ id });
   }
 
-  findByCountryId(countryId: number): Promise<Statistic | null> {
+  findByCountryId(countryId: number): Promise<Statistic> | null {
     if (!countryId) return null;
 
     return this.statisticRepo.findOne({ where: { countryId } });
