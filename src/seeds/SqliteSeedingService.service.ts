@@ -14,8 +14,8 @@ export class SqliteSeedingService implements OnApplicationBootstrap {
     }
 
     try {
-      const resp = await axios.get('https://devtest.ge/countries');
-      for (const country of resp.data) {
+      const { data } = await axios.get('https://devtest.ge/countries');
+      for (const country of data) {
         await this.countriesService.create(country);
       }
     } catch (e) {
